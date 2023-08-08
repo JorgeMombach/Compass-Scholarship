@@ -39,8 +39,7 @@ public class StudentService {
         return new StudentDtoResponse(
                 student.getStudent_id(),
                 student.getStudent_fname(),
-                student.getStudent_lname()
-        );
+                student.getStudent_lname());
     }
 
     public String updateStudent(Long student_id, StudentDtoRequest studentDtoRequest){
