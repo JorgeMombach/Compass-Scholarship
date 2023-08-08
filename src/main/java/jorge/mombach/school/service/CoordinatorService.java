@@ -2,10 +2,7 @@ package jorge.mombach.school.service;
 
 import jorge.mombach.school.dto.CoordinatorDtoRequest;
 import jorge.mombach.school.dto.CoordinatorDtoResponse;
-import jorge.mombach.school.dto.StudentDtoRequest;
-import jorge.mombach.school.dto.StudentDtoResponse;
 import jorge.mombach.school.entity.Coordinator;
-import jorge.mombach.school.entity.Student;
 import jorge.mombach.school.repository.CoordinatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

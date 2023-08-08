@@ -2,8 +2,6 @@ package jorge.mombach.school.controller;
 
 import jorge.mombach.school.dto.CoordinatorDtoRequest;
 import jorge.mombach.school.dto.CoordinatorDtoResponse;
-import jorge.mombach.school.dto.StudentDtoRequest;
-import jorge.mombach.school.dto.StudentDtoResponse;
 import jorge.mombach.school.service.CoordinatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
