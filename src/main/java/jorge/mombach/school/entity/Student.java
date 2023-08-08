@@ -12,6 +12,10 @@ public class Student {
     private String student_fname;
     private String student_lname;
 
+    @ManyToOne
+    @JoinColumn(name="class_id")
+    private Class class_id;
+
     public Student() {
     }
 
@@ -43,6 +47,14 @@ public class Student {
 
     public void setStudent_lname(String student_lname) {
         this.student_lname = student_lname;
+    }
+
+    public Class getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(Class class_id) {
+        this.class_id = class_id;
     }
 
     @Override

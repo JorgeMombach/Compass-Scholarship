@@ -13,15 +13,19 @@ public class Class {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long class_id;
 
-    @OneToMany(mappedBy = "class")
+    @OneToMany(mappedBy = "class_id")
     @JsonIgnore
     private List<Student> students;
-
-    @OneToMany(mappedBy = "class")
-    @JsonIgnore
-    private List<Organizer> organizers;
+//
+//    @OneToMany(mappedBy = "class")
+//    @JsonIgnore
+//    private List<Organizer> organizers;
 
     protected Class() {
+    }
+
+    public Class(Long class_id) {
+        this.class_id = class_id;
     }
 
     public Long getClass_id() {
@@ -39,14 +43,14 @@ public class Class {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
-
-    public List<Organizer> getOrganizers() {
-        return organizers;
-    }
-
-    public void setOrganizers(List<Organizer> organizers) {
-        this.organizers = organizers;
-    }
+//
+//    public List<Organizer> getOrganizers() {
+//        return organizers;
+//    }
+//
+//    public void setOrganizers(List<Organizer> organizers) {
+//        this.organizers = organizers;
+//    }
 
     @Override
     public String toString() {
