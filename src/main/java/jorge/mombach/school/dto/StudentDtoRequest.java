@@ -5,6 +5,7 @@ public class StudentDtoRequest {
     private String student_fname;
     private String student_lname;
 
+
     public String getStudent_fname() {
         return student_fname;
     }

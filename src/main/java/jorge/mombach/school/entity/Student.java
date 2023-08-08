@@ -9,14 +9,13 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long student_id;
-
     private String student_fname;
     private String student_lname;
 
     public Student() {
     }
 
-    public Student(long student_id, String student_fname, String student_lname) {
+    public Student(Long student_id, String student_fname, String student_lname) {
         this.student_id = student_id;
         this.student_fname = student_fname;
         this.student_lname = student_lname;
@@ -26,7 +25,7 @@ public class Student {
         return student_id;
     }
 
-    public void setStudent_id(long student_id) {
+    public void setStudent_id(Long student_id) {
         this.student_id = student_id;
     }
 
