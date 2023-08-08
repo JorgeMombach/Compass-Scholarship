@@ -43,4 +43,22 @@ public class StudentService {
         );
     }
 
+    public String updateStudent(Long student_id, StudentDtoRequest studentDtoRequest){
+        Student student = studentRepository.findById(student_id).orElse(null);
+
+        if(student == null){
+            return "Student not found.";
+        }
+        student.setStudent_fname(studentDtoRequest.getStudent_fname());
+        student.setStudent_lname(studentDtoRequest.getStudent_lname());
+
+        studentRepository.save(student);
+        return "Student updated successfully.";
+    }
+
+    public void deleteStudent(Long student_id) {
+        if (studentRepository.existsById(student_id)) {
+            studentRepository.deleteById(student_id);
+        }
+    }
 }
