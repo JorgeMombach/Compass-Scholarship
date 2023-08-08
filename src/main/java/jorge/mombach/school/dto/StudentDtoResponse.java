@@ -1,32 +1,22 @@
-package jorge.mombach.school.entity;
+package jorge.mombach.school.dto;
 
-import jakarta.persistence.*;
+public class StudentDtoResponse {
 
-@Entity
-@Table(name = "STUDENT_TB")
-public class Student {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long student_id;
-
     private String student_fname;
     private String student_lname;
 
-    public Student() {
-    }
-
-    public Student(long student_id, String student_fname, String student_lname) {
+    public StudentDtoResponse(Long student_id, String student_fname, String student_lname) {
         this.student_id = student_id;
         this.student_fname = student_fname;
         this.student_lname = student_lname;
     }
 
-    public long getStudent_id() {
+    public Long getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(long student_id) {
+    public void setStudent_id(Long student_id) {
         this.student_id = student_id;
     }
 
@@ -44,14 +34,5 @@ public class Student {
 
     public void setStudent_lname(String student_lname) {
         this.student_lname = student_lname;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "student_id=" + student_id +
-                ", student_fname='" + student_fname + '\'' +
-                ", student_lname='" + student_lname + '\'' +
-                '}';
     }
 }
