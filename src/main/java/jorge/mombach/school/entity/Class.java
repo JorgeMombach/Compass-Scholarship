@@ -1,5 +1,6 @@
 package jorge.mombach.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,9 +14,11 @@ public class Class {
     private Long class_id;
 
     @OneToMany(mappedBy = "class")
+    @JsonIgnore
     private List<Student> students;
 
     @OneToMany(mappedBy = "class")
+    @JsonIgnore
     private List<Organizer> organizers;
 
     protected Class() {
