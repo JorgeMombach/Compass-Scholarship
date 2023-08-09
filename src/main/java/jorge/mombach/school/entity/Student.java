@@ -27,6 +27,13 @@ public class Student {
         this.student_name = student_name;
     }
 
+    public Student(Long student_id, String student_name, Classroom classroom, Squad squad) {
+        this.student_id = student_id;
+        this.student_name = student_name;
+        this.classroom = classroom;
+        this.squad = squad;
+    }
+
     public long getStudent_id() {
         return student_id;
     }
@@ -49,6 +56,14 @@ public class Student {
 
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
+    }
+
+    public Squad getSquad() {
+        return squad;
+    }
+
+    public void setSquad(Squad squad) {
+        this.squad = squad;
     }
 
     @Override

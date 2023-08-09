@@ -12,4 +12,5 @@ public class StudentDtoRequest {
     public void setStudent_name(String student_name) {
         this.student_name = student_name;
     }
+
 }

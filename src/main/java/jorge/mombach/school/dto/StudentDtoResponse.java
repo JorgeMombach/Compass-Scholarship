@@ -5,6 +5,7 @@ public class StudentDtoResponse {
     private Long student_id;
     private String student_name;
 
+
     public StudentDtoResponse(Long student_id, String student_name) {
         this.student_id = student_id;
         this.student_name = student_name;
