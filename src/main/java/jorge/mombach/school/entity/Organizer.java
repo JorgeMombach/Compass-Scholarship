@@ -12,6 +12,10 @@ public class Organizer {
     private String org_name;
     private String org_role;
 
+    @ManyToOne
+    @JoinColumn(name="classroom_id")
+    private Classroom classroom;
+
     public Organizer() {
     }
 
@@ -44,6 +48,14 @@ public class Organizer {
 
     public void setOrg_role(String org_role) {
         this.org_role = org_role;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
     }
 
     @Override

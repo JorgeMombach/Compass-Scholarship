@@ -12,8 +12,12 @@ public class Student {
     private String student_name;
 
     @ManyToOne
-    @JoinColumn(name="class_id")
-    private Class class_id;
+    @JoinColumn(name="classroom_id")
+    private Classroom classroom;
+
+    @ManyToOne
+    @JoinColumn(name="squad_id")
+    private Squad squad;
 
     public Student() {
     }
@@ -39,12 +43,12 @@ public class Student {
         this.student_name = student_name;
     }
 
-    public Class getClass_id() {
-        return class_id;
+    public Classroom getClassroom() {
+        return classroom;
     }
 
-    public void setClass_id(Class class_id) {
-        this.class_id = class_id;
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
     }
 
     @Override
