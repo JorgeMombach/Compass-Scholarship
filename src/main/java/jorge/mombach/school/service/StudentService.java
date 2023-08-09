@@ -21,8 +21,7 @@ public class StudentService {
     public StudentDtoRequest save(StudentDtoRequest studentDtoRequest){
         Student student = new Student(
                 null,
-                studentDtoRequest.getStudent_fname(),
-                studentDtoRequest.getStudent_lname());
+                studentDtoRequest.getStudent_name());
 
         studentRepository.save(student);
         return studentDtoRequest;
@@ -38,8 +37,7 @@ public class StudentService {
     private StudentDtoResponse convertToDto(Student student) {
         return new StudentDtoResponse(
                 student.getStudent_id(),
-                student.getStudent_fname(),
-                student.getStudent_lname());
+                student.getStudent_name());
     }
 
     public String updateStudent(Long student_id, StudentDtoRequest studentDtoRequest){
@@ -48,8 +46,7 @@ public class StudentService {
         if(student == null){
             return "Student not found.";
         }
-        student.setStudent_fname(studentDtoRequest.getStudent_fname());
-        student.setStudent_lname(studentDtoRequest.getStudent_lname());
+        student.setStudent_name(studentDtoRequest.getStudent_name());
 
         studentRepository.save(student);
         return "Student updated successfully.";

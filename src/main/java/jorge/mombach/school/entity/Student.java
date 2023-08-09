@@ -9,8 +9,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long student_id;
-    private String student_fname;
-    private String student_lname;
+    private String student_name;
 
     @ManyToOne
     @JoinColumn(name="class_id")
@@ -19,10 +18,9 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long student_id, String student_fname, String student_lname) {
+    public Student(Long student_id, String student_name) {
         this.student_id = student_id;
-        this.student_fname = student_fname;
-        this.student_lname = student_lname;
+        this.student_name = student_name;
     }
 
     public long getStudent_id() {
@@ -33,20 +31,12 @@ public class Student {
         this.student_id = student_id;
     }
 
-    public String getStudent_fname() {
-        return student_fname;
+    public String getStudent_name() {
+        return student_name;
     }
 
-    public void setStudent_fname(String student_fname) {
-        this.student_fname = student_fname;
-    }
-
-    public String getStudent_lname() {
-        return student_lname;
-    }
-
-    public void setStudent_lname(String student_lname) {
-        this.student_lname = student_lname;
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
     }
 
     public Class getClass_id() {
@@ -61,8 +51,7 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "student_id=" + student_id +
-                ", student_fname='" + student_fname + '\'' +
-                ", student_lname='" + student_lname + '\'' +
+                ", student_name='" + student_name + '\'' +
                 '}';
     }
 }
