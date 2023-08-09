@@ -13,6 +13,7 @@ public class Classroom {
     private Long id;
 
     private String classrom_name;
+    private String status;
 
     @OneToMany(mappedBy = "classroom")
     private List<Student> students;
@@ -23,14 +24,16 @@ public class Classroom {
     protected Classroom() {
     }
 
-    public Classroom(Long id, String classrom_name) {
+    public Classroom(Long id, String classrom_name, String status) {
         this.id = id;
         this.classrom_name = classrom_name;
+        this.status = status;
     }
 
-    public Classroom(Long id, String classrom_name, List<Student> students, List<Organizer> organizers) {
+    public Classroom(Long id, String classrom_name, String status, List<Student> students, List<Organizer> organizers) {
         this.id = id;
         this.classrom_name = classrom_name;
+        this.status = status;
         this.students = students;
         this.organizers = organizers;
     }
@@ -51,6 +54,14 @@ public class Classroom {
         this.classrom_name = classrom_name;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public List<Student> getStudents() {
         return students;
     }
@@ -69,8 +80,10 @@ public class Classroom {
 
     @Override
     public String toString() {
-        return "Class{" +
+        return "Classroom{" +
                 "id=" + id +
+                ", classrom_name='" + classrom_name + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
