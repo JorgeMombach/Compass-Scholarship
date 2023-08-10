@@ -13,7 +13,7 @@ public class Classroom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String classrom_name;
+    private String classroom_name;
     private String status;
 
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
@@ -22,31 +22,25 @@ public class Classroom {
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Squad> squads = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name= "CLASSROOM_ORGANIZER",
-            joinColumns = @JoinColumn(name="classroom_id"),
-            inverseJoinColumns = @JoinColumn(name = "organizer_id"))
-    private List<Organizer> organizers;
-
     protected Classroom() {
     }
 
-    public Classroom(Long id, String classrom_name, String status) {
+    public Classroom(Long id, String classroom_name, String status) {
         this.id = id;
-        this.classrom_name = classrom_name;
+        this.classroom_name = classroom_name;
         this.status = status;
     }
 
-    public Classroom(Long id, String classrom_name, String status, List<Student> students) {
+    public Classroom(Long id, String classroom_name, String status, List<Student> students) {
         this.id = id;
-        this.classrom_name = classrom_name;
+        this.classroom_name = classroom_name;
         this.status = status;
         this.students = students;
     }
 
-    public Classroom(Long id, String classrom_name, String status, List<Student> students, List<Squad> squads) {
+    public Classroom(Long id, String classroom_name, String status, List<Student> students, List<Squad> squads) {
         this.id = id;
-        this.classrom_name = classrom_name;
+        this.classroom_name = classroom_name;
         this.status = status;
         this.students = students;
         this.squads = squads;
@@ -60,12 +54,12 @@ public class Classroom {
         this.id = id;
     }
 
-    public String getClassrom_name() {
-        return classrom_name;
+    public String getClassroom_name() {
+        return classroom_name;
     }
 
-    public void setClassrom_name(String classrom_name) {
-        this.classrom_name = classrom_name;
+    public void setClassroom_name(String classroom_name) {
+        this.classroom_name = classroom_name;
     }
 
     public String getStatus() {
@@ -96,7 +90,7 @@ public class Classroom {
     public String toString() {
         return "Classroom{" +
                 "id=" + id +
-                ", classrom_name='" + classrom_name + '\'' +
+                ", classroom_name='" + classroom_name + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

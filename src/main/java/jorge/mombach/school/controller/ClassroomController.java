@@ -1,10 +1,7 @@
 package jorge.mombach.school.controller;
 
 import jakarta.validation.Valid;
-import jorge.mombach.school.dto.ClassroomDtoRequest;
-import jorge.mombach.school.dto.ClassroomDtoResponse;
-import jorge.mombach.school.dto.StudentDtoRequest;
-import jorge.mombach.school.dto.StudentDtoResponse;
+import jorge.mombach.school.dto.*;
 import jorge.mombach.school.service.ClassroomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -70,5 +68,6 @@ public class ClassroomController {
     public List<StudentDtoResponse> getStudentsWithSquadsByClassroom(@PathVariable Long classroomId) {
         return classroomService.getStudentsWithSquadsByClassroom(classroomId);
     }
+
 }
 

@@ -1,9 +1,6 @@
 package jorge.mombach.school.service;
 
-import jorge.mombach.school.dto.ClassroomDtoRequest;
-import jorge.mombach.school.dto.ClassroomDtoResponse;
-import jorge.mombach.school.dto.StudentDtoRequest;
-import jorge.mombach.school.dto.StudentDtoResponse;
+import jorge.mombach.school.dto.*;
 import jorge.mombach.school.entity.Classroom;
 import jorge.mombach.school.entity.Squad;
 import jorge.mombach.school.entity.Student;
@@ -44,7 +41,7 @@ public class ClassroomService {
     private ClassroomDtoResponse convertToDto(Classroom classroom) {
         return new ClassroomDtoResponse(
                 classroom.getId(),
-                classroom.getClassrom_name(),
+                classroom.getClassroom_name(),
                 classroom.getStatus());
     }
 
@@ -54,7 +51,7 @@ public class ClassroomService {
         if(classroom == null){
             return "Classroom not found.";
         }
-        classroom.setClassrom_name(classroomDtoRequest.getClassroom_name());
+        classroom.setClassroom_name(classroomDtoRequest.getClassroom_name());
         classroom.setStatus(classroomDtoRequest.getStatus());
 
         classroomRepository.save(classroom);
@@ -94,9 +91,6 @@ public class ClassroomService {
         );
     }
 
-
-
-
     public List<StudentDtoResponse> getStudentsWithSquadsByClassroom(Long classroomId) {
         Classroom classroom = classroomRepository.findById(classroomId)
                 .orElseThrow(() -> new ClassroomNotFoundException("Classroom not found: " + classroomId));
@@ -115,5 +109,6 @@ public class ClassroomService {
                 student.getSquad().getSquad_name()
         );
     }
+
 }
 
