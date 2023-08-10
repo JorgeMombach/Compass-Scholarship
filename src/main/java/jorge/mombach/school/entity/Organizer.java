@@ -2,6 +2,8 @@ package jorge.mombach.school.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ORGANIZER_TB")
 public class Organizer {
@@ -12,9 +14,8 @@ public class Organizer {
     private String org_name;
     private String org_role;
 
-    @ManyToOne
-    @JoinColumn(name="classroom_id")
-    private Classroom classroom;
+    @ManyToMany(mappedBy = "organizers")
+    private List<Classroom> classrooms;
 
     public Organizer() {
     }
@@ -25,6 +26,12 @@ public class Organizer {
         this.org_role = org_role;
     }
 
+    public Organizer(Long org_id, String org_name, String org_role, List<Classroom> classrooms) {
+        this.org_id = org_id;
+        this.org_name = org_name;
+        this.org_role = org_role;
+        this.classrooms = classrooms;
+    }
 
     public long getOrg_id() {
         return org_id;
@@ -50,12 +57,12 @@ public class Organizer {
         this.org_role = org_role;
     }
 
-    public Classroom getClassroom() {
-        return classroom;
+    public List<Classroom> getClassrooms() {
+        return classrooms;
     }
 
-    public void setClassroom(Classroom classroom) {
-        this.classroom = classroom;
+    public void setClassrooms(List<Classroom> classrooms) {
+        this.classrooms = classrooms;
     }
 
     @Override

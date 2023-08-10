@@ -16,6 +16,10 @@ public class Squad {
     @OneToMany(mappedBy = "squad")
     private List<Student> students;
 
+    @ManyToOne
+    @JoinColumn(name="classroom_id")
+    private Classroom classroom;
+
     protected Squad(){
     }
 
@@ -28,6 +32,13 @@ public class Squad {
         this.id = id;
         this.squad_name = squad_name;
         this.students = students;
+    }
+
+    public Squad(Long id, String squad_name, List<Student> students, Classroom classroom) {
+        this.id = id;
+        this.squad_name = squad_name;
+        this.students = students;
+        this.classroom = classroom;
     }
 
     public Long getId() {
@@ -52,6 +63,14 @@ public class Squad {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
     }
 
     @Override

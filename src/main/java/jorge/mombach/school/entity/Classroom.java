@@ -19,6 +19,12 @@ public class Classroom {
     private List<Student> students;
 
     @OneToMany(mappedBy = "classroom")
+    private List<Squad> squads;
+
+    @ManyToMany
+    @JoinTable(name= "CLASSROOM_ORGANIZER",
+            joinColumns = @JoinColumn(name="classroom_id"),
+            inverseJoinColumns = @JoinColumn(name = "organizer_id"))
     private List<Organizer> organizers;
 
     protected Classroom() {
@@ -30,12 +36,19 @@ public class Classroom {
         this.status = status;
     }
 
-    public Classroom(Long id, String classrom_name, String status, List<Student> students, List<Organizer> organizers) {
+    public Classroom(Long id, String classrom_name, String status, List<Student> students) {
         this.id = id;
         this.classrom_name = classrom_name;
         this.status = status;
         this.students = students;
-        this.organizers = organizers;
+    }
+
+    public Classroom(Long id, String classrom_name, String status, List<Student> students, List<Squad> squads) {
+        this.id = id;
+        this.classrom_name = classrom_name;
+        this.status = status;
+        this.students = students;
+        this.squads = squads;
     }
 
     public Long getId() {
@@ -70,12 +83,12 @@ public class Classroom {
         this.students = students;
     }
 
-    public List<Organizer> getOrganizers() {
-        return organizers;
+    public List<Squad> getSquads() {
+        return squads;
     }
 
-    public void setOrganizers(List<Organizer> organizers) {
-        this.organizers = organizers;
+    public void setSquads(List<Squad> squads) {
+        this.squads = squads;
     }
 
     @Override
