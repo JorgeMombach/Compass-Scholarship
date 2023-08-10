@@ -2,6 +2,7 @@ package jorge.mombach.school.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,14 +14,14 @@ public class Squad {
     private Long id;
     private String squad_name;
 
-    @OneToMany(mappedBy = "squad")
-    private List<Student> students;
+    @OneToMany(mappedBy = "squad", cascade = CascadeType.ALL)
+    private List<Student> students = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name="classroom_id")
     private Classroom classroom;
 
-    protected Squad(){
+    public Squad(){
     }
 
     public Squad(Long id, String squad_name) {

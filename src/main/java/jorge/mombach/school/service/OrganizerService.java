@@ -20,7 +20,7 @@ public class OrganizerService {
         Organizer organizer = new Organizer(
                 null,
                 organizerDtoRequest.getOrg_name(),
-                organizerDtoRequest.getOrg_role());
+                organizerDtoRequest.getOrganizerRole());
 
         organizerRepository.save(organizer);
         return organizerDtoRequest;

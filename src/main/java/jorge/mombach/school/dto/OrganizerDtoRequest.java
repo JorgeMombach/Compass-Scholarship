@@ -1,9 +1,11 @@
 package jorge.mombach.school.dto;
 
+import jorge.mombach.school.entity.OrganizerRole;
+
 public class OrganizerDtoRequest {
 
     private String org_name;
-    private String org_role;
+    private OrganizerRole organizerRole;
 
     public String getOrg_name() {
         return org_name;
@@ -13,11 +15,11 @@ public class OrganizerDtoRequest {
         this.org_name = org_name;
     }
 
-    public String getOrg_role() {
-        return org_role;
+    public OrganizerRole getOrganizerRole() {
+        return organizerRole;
     }
 
-    public void setOrg_role(String org_role) {
-        this.org_role = org_role;
+    public void setOrganizerRole(OrganizerRole organizerRole) {
+        this.organizerRole = organizerRole;
     }
 }

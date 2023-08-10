@@ -12,7 +12,9 @@ public class Organizer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long org_id;
     private String org_name;
-    private String org_role;
+
+    @Enumerated(EnumType.STRING)
+    private OrganizerRole org_role;
 
     @ManyToMany(mappedBy = "organizers")
     private List<Classroom> classrooms;
@@ -20,16 +22,20 @@ public class Organizer {
     public Organizer() {
     }
 
-    public Organizer(Long org_id, String org_name, String org_role) {
+    public Organizer(Long org_id, String org_name) {
+        this.org_id = org_id;
+        this.org_name = org_name;
+    }
+
+    public Organizer(Long org_id, String org_name, OrganizerRole org_role) {
         this.org_id = org_id;
         this.org_name = org_name;
         this.org_role = org_role;
     }
 
-    public Organizer(Long org_id, String org_name, String org_role, List<Classroom> classrooms) {
+    public Organizer(Long org_id, String org_name, List<Classroom> classrooms) {
         this.org_id = org_id;
         this.org_name = org_name;
-        this.org_role = org_role;
         this.classrooms = classrooms;
     }
 
@@ -49,11 +55,11 @@ public class Organizer {
         this.org_name = org_name;
     }
 
-    public String getOrg_role() {
+    public OrganizerRole getOrg_role() {
         return org_role;
     }
 
-    public void setOrg_role(String org_role) {
+    public void setOrg_role(OrganizerRole org_role) {
         this.org_role = org_role;
     }
 
@@ -70,7 +76,7 @@ public class Organizer {
         return "Organizer{" +
                 "org_id=" + org_id +
                 ", org_name='" + org_name + '\'' +
-                ", org_role='" + org_role + '\'' +
+                ", org_role=" + org_role +
                 '}';
     }
 }

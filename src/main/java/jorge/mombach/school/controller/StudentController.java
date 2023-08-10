@@ -17,28 +17,4 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class StudentController {
 
-    @Autowired
-    StudentService studentService;
-    @Autowired
-    ClassroomService classroomService;
-
-    @PostMapping("/classroom/{id}/students")
-    public ResponseEntity<Object> createStudentInClassroom(
-            @PathVariable Long id,
-            @Valid @RequestBody StudentDtoRequest studentDtoRequest) {
-
-        StudentDtoResponse savedStudent = studentService.createStudentInClassroom(id, studentDtoRequest);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedStudent.getStudent_id())
-                .toUri();
-
-        return ResponseEntity.created(location).build();
-    }
-
-    @GetMapping("/classroom/{id}/students")
-    public List<StudentDtoResponse> getStudentsByClassroom(@PathVariable Long id) {
-        return studentService.getStudentsByClassroom(id);
-    }
 }

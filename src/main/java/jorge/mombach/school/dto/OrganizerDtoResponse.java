@@ -1,16 +1,19 @@
 package jorge.mombach.school.dto;
 
+import jorge.mombach.school.entity.OrganizerRole;
+
 public class OrganizerDtoResponse {
 
     private Long org_id;
     private String org_name;
-    private String org_role;
+    private OrganizerRole organizerRole;
 
-    public OrganizerDtoResponse(Long org_id, String org_name, String org_role) {
+    public OrganizerDtoResponse(Long org_id, String org_name, OrganizerRole organizerRole) {
         this.org_id = org_id;
         this.org_name = org_name;
-        this.org_role = org_role;
+        this.organizerRole = organizerRole;
     }
+
 
     public Long getOrg_id() {
         return org_id;
@@ -28,11 +31,11 @@ public class OrganizerDtoResponse {
         this.org_name = org_name;
     }
 
-    public String getOrg_role() {
-        return org_role;
+    public OrganizerRole getOrganizerRole() {
+        return organizerRole;
     }
 
-    public void setOrg_role(String org_role) {
-        this.org_role = org_role;
+    public void setOrganizerRole(OrganizerRole organizerRole) {
+        this.organizerRole = organizerRole;
     }
 }
