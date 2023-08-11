@@ -1,6 +1,7 @@
 package jorge.mombach.school.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,16 @@ public class Classroom {
 
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Squad> squads = new ArrayList<>();
+
+    @OneToOne(mappedBy = "classroom")
+    private Coordinator coordinator;
+
+    @OneToMany(mappedBy = "classroom")
+    @Size(max = 3)
+    private List<Instructor> instructors = new ArrayList<>();
+
+    @OneToOne(mappedBy = "classroom")
+    private ScrumMaster scrumMaster;
 
     protected Classroom() {
     }
@@ -44,6 +55,36 @@ public class Classroom {
         this.status = status;
         this.students = students;
         this.squads = squads;
+    }
+
+    public Classroom(Long id, String classroom_name, String status, List<Student> students, List<Squad> squads, Coordinator coordinator) {
+        this.id = id;
+        this.classroom_name = classroom_name;
+        this.status = status;
+        this.students = students;
+        this.squads = squads;
+        this.coordinator = coordinator;
+    }
+
+    public Classroom(Long id, String classroom_name, String status, List<Student> students, List<Squad> squads, Coordinator coordinator, List<Instructor> instructors) {
+        this.id = id;
+        this.classroom_name = classroom_name;
+        this.status = status;
+        this.students = students;
+        this.squads = squads;
+        this.coordinator = coordinator;
+        this.instructors = instructors;
+    }
+
+    public Classroom(Long id, String classroom_name, String status, List<Student> students, List<Squad> squads, Coordinator coordinator, List<Instructor> instructors, ScrumMaster scrumMaster) {
+        this.id = id;
+        this.classroom_name = classroom_name;
+        this.status = status;
+        this.students = students;
+        this.squads = squads;
+        this.coordinator = coordinator;
+        this.instructors = instructors;
+        this.scrumMaster = scrumMaster;
     }
 
     public Long getId() {
@@ -84,6 +125,30 @@ public class Classroom {
 
     public void setSquads(List<Squad> squads) {
         this.squads = squads;
+    }
+
+    public Coordinator getCoordinator() {
+        return coordinator;
+    }
+
+    public void setCoordinator(Coordinator coordinator) {
+        this.coordinator = coordinator;
+    }
+
+    public List<Instructor> getInstructors() {
+        return instructors;
+    }
+
+    public void setInstructors(List<Instructor> instructors) {
+        this.instructors = instructors;
+    }
+
+    public ScrumMaster getScrumMaster() {
+        return scrumMaster;
+    }
+
+    public void setScrumMaster(ScrumMaster scrumMaster) {
+        this.scrumMaster = scrumMaster;
     }
 
     @Override

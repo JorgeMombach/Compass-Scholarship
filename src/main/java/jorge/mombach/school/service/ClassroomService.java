@@ -2,10 +2,9 @@ package jorge.mombach.school.service;
 
 import jorge.mombach.school.dto.*;
 import jorge.mombach.school.entity.Classroom;
-import jorge.mombach.school.entity.Squad;
-import jorge.mombach.school.entity.Student;
 import jorge.mombach.school.exception.ClassroomNotFoundException;
-import jorge.mombach.school.exception.SquadNotFoundException;
+import jorge.mombach.school.exception.InsufficientStudentsException;
+import jorge.mombach.school.exception.InvalidClassroomStatusException;
 import jorge.mombach.school.repository.ClassroomRepository;
 import jorge.mombach.school.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,11 @@ public class ClassroomService {
     @Autowired
     StudentRepository studentRepository;
 
-    public ClassroomDtoRequest save(ClassroomDtoRequest classroomDtoRequest){
+    public ClassroomDtoRequest save(ClassroomDtoRequest classroomDtoRequest) {
+        if (!classroomDtoRequest.getStatus().equalsIgnoreCase("waiting")) {
+            throw new InvalidClassroomStatusException("Invalid initial status for classroom. Only 'waiting' is allowed.");
+        }
+
         Classroom classroom = new Classroom(
                 null,
                 classroomDtoRequest.getClassroom_name(),
@@ -45,69 +48,40 @@ public class ClassroomService {
                 classroom.getStatus());
     }
 
-    public String updateClassroom(Long id, ClassroomDtoRequest classroomDtoRequest){
-        Classroom classroom = classroomRepository.findById(id).orElse(null);
+    public String updateClassroom(Long id, ClassroomDtoRequest classroomDtoRequest) {
+        Classroom classroom = classroomRepository.findById(id)
+                .orElseThrow(() -> new ClassroomNotFoundException("Classroom not found: " + id));
 
-        if(classroom == null){
-            return "Classroom not found.";
+        String newStatus = classroomDtoRequest.getStatus();
+
+        if (!newStatus.equals("waiting") && !newStatus.equals("started") && !newStatus.equals("finished")) {
+            throw new InvalidClassroomStatusException("Invalid status: " + newStatus);
         }
+
+        if (newStatus.equals("started")) {
+            if (classroom.getStudents().size() < 15) {
+                throw new InsufficientStudentsException("At least 15 students are required to start the classroom.");
+            }
+        } else if (newStatus.equals("finished")) {
+            if (!classroom.getStatus().equals("started")) {
+                throw new InvalidClassroomStatusException("Classroom must be in 'started' status before it can be finished.");
+            }
+
+            throw new InvalidClassroomStatusException("Classroom is already finished and cannot be updated.");
+        }
+
         classroom.setClassroom_name(classroomDtoRequest.getClassroom_name());
-        classroom.setStatus(classroomDtoRequest.getStatus());
+        classroom.setStatus(newStatus);
 
         classroomRepository.save(classroom);
         return "Classroom updated successfully.";
     }
 
+
     public void deleteClassroom(Long id) {
         if (classroomRepository.existsById(id)) {
             classroomRepository.deleteById(id);
         }
-    }
-
-    public StudentDtoResponse createStudentInClassroomAndSquad(Long classroomId, Long squadId, StudentDtoRequest studentDtoRequest) {
-        Classroom classroom = classroomRepository.findById(classroomId)
-                .orElseThrow(() -> new ClassroomNotFoundException("Classroom not found: " + classroomId));
-
-        Squad squad = classroom.getSquads().stream()
-                .filter(s -> s.getId().equals(squadId))
-                .findFirst()
-                .orElseThrow(() -> new SquadNotFoundException("Squad not found in the specified classroom"));
-
-        Student student = new Student();
-        student.setStudent_name(studentDtoRequest.getStudent_name());
-
-        student.setClassroom(classroom);
-        student.setSquad(squad);
-
-        studentRepository.save(student);
-
-        return convertStudentToDto(student);
-    }
-
-    private StudentDtoResponse convertStudentToDto(Student student) {
-        return new StudentDtoResponse(
-                student.getStudent_id(),
-                student.getStudent_name()
-        );
-    }
-
-    public List<StudentDtoResponse> getStudentsWithSquadsByClassroom(Long classroomId) {
-        Classroom classroom = classroomRepository.findById(classroomId)
-                .orElseThrow(() -> new ClassroomNotFoundException("Classroom not found: " + classroomId));
-
-        List<Student> students = classroom.getStudents();
-
-        return students.stream()
-                .map(this::convertStudentToDtoWithSquad)
-                .collect(Collectors.toList());
-    }
-
-    private StudentDtoResponse convertStudentToDtoWithSquad(Student student) {
-        return new StudentDtoResponse(
-                student.getStudent_id(),
-                student.getStudent_name(),
-                student.getSquad().getSquad_name()
-        );
     }
 
 }
