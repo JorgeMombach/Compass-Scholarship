@@ -58,6 +58,10 @@ public class ClassroomService {
             throw new InvalidClassroomStatusException("Invalid status: " + newStatus);
         }
 
+        if (classroom.getStatus().equals("finished")) {
+            throw new InvalidClassroomStatusException("Classroom is already finished and cannot be updated.");
+        }
+
         if (newStatus.equals("started")) {
             if (classroom.getStudents().size() < 15) {
                 throw new InsufficientStudentsException("At least 15 students are required to start the classroom.");
@@ -66,8 +70,6 @@ public class ClassroomService {
             if (!classroom.getStatus().equals("started")) {
                 throw new InvalidClassroomStatusException("Classroom must be in 'started' status before it can be finished.");
             }
-
-            throw new InvalidClassroomStatusException("Classroom is already finished and cannot be updated.");
         }
 
         classroom.setClassroom_name(classroomDtoRequest.getClassroom_name());
@@ -76,7 +78,6 @@ public class ClassroomService {
         classroomRepository.save(classroom);
         return "Classroom updated successfully.";
     }
-
 
     public void deleteClassroom(Long id) {
         if (classroomRepository.existsById(id)) {

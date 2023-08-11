@@ -6,6 +6,8 @@ import jorge.mombach.school.entity.Classroom;
 import jorge.mombach.school.entity.Squad;
 import jorge.mombach.school.entity.Student;
 import jorge.mombach.school.exception.ClassroomNotFoundException;
+import jorge.mombach.school.exception.InvalidClassroomStatusException;
+import jorge.mombach.school.exception.MaximumStudentsExceededException;
 import jorge.mombach.school.exception.SquadNotFoundException;
 import jorge.mombach.school.repository.ClassroomRepository;
 import jorge.mombach.school.repository.SquadRepository;
@@ -34,6 +36,20 @@ public class StudentService {
                 .filter(s -> s.getId().equals(squadId))
                 .findFirst()
                 .orElseThrow(() -> new SquadNotFoundException("Squad not found in the specified classroom"));
+
+        String classroomStatus = classroom.getStatus();
+
+        if (!classroomStatus.equals("waiting")) {
+            throw new InvalidClassroomStatusException("Cannot add a new student when the classroom status is: " + classroomStatus);
+        }
+
+        if (classroom.getStudents().size() >= 30) {
+            throw new MaximumStudentsExceededException("Maximum number of students in the classroom exceeded. (max: 30)");
+        }
+
+        if (squad.getStudents().size() >= 5) {
+            throw new MaximumStudentsExceededException("Maximum number of students in the squad exceeded (max: 5). Consider creating a new Squad.");
+        }
 
         Student student = new Student();
         student.setStudent_name(studentDtoRequest.getStudent_name());
