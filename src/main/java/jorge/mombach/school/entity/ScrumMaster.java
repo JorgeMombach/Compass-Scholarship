@@ -8,9 +8,9 @@ public class ScrumMaster {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ScrumMasterId;
+    private Long scrumMaster_id;
 
-    private String name;
+    private String scrumMaster_name;
 
     @OneToOne
     @JoinColumn(name = "classroom_id")
@@ -19,31 +19,31 @@ public class ScrumMaster {
     public ScrumMaster() {
     }
 
-    public ScrumMaster(Long scrumMasterId, String name) {
-        ScrumMasterId = scrumMasterId;
-        this.name = name;
+    public ScrumMaster(Long scrumMaster_id, String scrumMaster_name) {
+        this.scrumMaster_id = scrumMaster_id;
+        this.scrumMaster_name = scrumMaster_name;
     }
 
-    public ScrumMaster(Long scrumMasterId, String name, Classroom classroom) {
-        ScrumMasterId = scrumMasterId;
-        this.name = name;
+    public ScrumMaster(Long scrumMaster_id, String scrumMaster_name, Classroom classroom) {
+        this.scrumMaster_id = scrumMaster_id;
+        this.scrumMaster_name = scrumMaster_name;
         this.classroom = classroom;
     }
 
-    public Long getScrumMasterId() {
-        return ScrumMasterId;
+    public Long getScrumMaster_id() {
+        return scrumMaster_id;
     }
 
-    public void setScrumMasterId(Long scrumMasterId) {
-        ScrumMasterId = scrumMasterId;
+    public void setScrumMaster_id(Long scrumMaster_id) {
+        this.scrumMaster_id = scrumMaster_id;
     }
 
-    public String getName() {
-        return name;
+    public String getScrumMaster_name() {
+        return scrumMaster_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setScrumMaster_name(String scrumMaster_name) {
+        this.scrumMaster_name = scrumMaster_name;
     }
 
     public Classroom getClassroom() {
@@ -57,8 +57,8 @@ public class ScrumMaster {
     @Override
     public String toString() {
         return "ScrumMaster{" +
-                "ScrumMasterId=" + ScrumMasterId +
-                ", name='" + name + '\'' +
+                "scrumMaster_id=" + scrumMaster_id +
+                ", scrumMaster_name='" + scrumMaster_name + '\'' +
                 '}';
     }
 }

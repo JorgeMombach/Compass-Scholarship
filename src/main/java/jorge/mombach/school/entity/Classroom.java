@@ -27,7 +27,6 @@ public class Classroom {
     private Coordinator coordinator;
 
     @OneToMany(mappedBy = "classroom")
-    @Size(max = 3)
     private List<Instructor> instructors = new ArrayList<>();
 
     @OneToOne(mappedBy = "classroom")

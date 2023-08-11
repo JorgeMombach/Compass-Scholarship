@@ -8,9 +8,9 @@ public class Coordinator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CoordinatorId;
+    private Long coordinator_id;
 
-    private String name;
+    private String coordinator_name;
 
     @OneToOne
     @JoinColumn(name = "classroom_id")
@@ -19,31 +19,31 @@ public class Coordinator {
     public Coordinator() {
     }
 
-    public Coordinator(Long coordinatorId, String name) {
-        CoordinatorId = coordinatorId;
-        this.name = name;
+    public Coordinator(Long coordinator_id, String coordinator_name) {
+        this.coordinator_id = coordinator_id;
+        this.coordinator_name = coordinator_name;
     }
 
-    public Coordinator(Long coordinatorId, String name, Classroom classroom) {
-        CoordinatorId = coordinatorId;
-        this.name = name;
+    public Coordinator(Long coordinator_id, String coordinator_name, Classroom classroom) {
+        this.coordinator_id = coordinator_id;
+        this.coordinator_name = coordinator_name;
         this.classroom = classroom;
     }
 
-    public Long getCoordinatorId() {
-        return CoordinatorId;
+    public Long getCoordinator_id() {
+        return coordinator_id;
     }
 
-    public void setCoordinatorId(Long coordinatorId) {
-        CoordinatorId = coordinatorId;
+    public void setCoordinator_id(Long coordinator_id) {
+        this.coordinator_id = coordinator_id;
     }
 
-    public String getName() {
-        return name;
+    public String getCoordinator_name() {
+        return coordinator_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCoordinator_name(String coordinator_name) {
+        this.coordinator_name = coordinator_name;
     }
 
     public Classroom getClassroom() {
@@ -57,8 +57,8 @@ public class Coordinator {
     @Override
     public String toString() {
         return "Coordinator{" +
-                "CoordinatorId=" + CoordinatorId +
-                ", name='" + name + '\'' +
+                "coordinator_id=" + coordinator_id +
+                ", coordinator_name='" + coordinator_name + '\'' +
                 '}';
     }
 }

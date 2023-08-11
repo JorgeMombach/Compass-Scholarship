@@ -1,9 +1,6 @@
 package jorge.mombach.school.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
-
-import java.util.List;
 
 @Entity
 @Table(name = "INSTRUCTOR_TB")
@@ -11,9 +8,9 @@ public class Instructor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long InstructorId;
+    private Long instructor_id;
 
-    private String name;
+    private String instructor_name;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
@@ -22,31 +19,31 @@ public class Instructor {
     public Instructor() {
     }
 
-    public Instructor(Long instructorId, String name) {
-        InstructorId = instructorId;
-        this.name = name;
+    public Instructor(Long instructor_id, String instructor_name) {
+        this.instructor_id = instructor_id;
+        this.instructor_name = instructor_name;
     }
 
-    public Instructor(Long instructorId, String name, Classroom classroom) {
-        InstructorId = instructorId;
-        this.name = name;
+    public Instructor(Long instructor_id, String instructor_name, Classroom classroom) {
+        this.instructor_id = instructor_id;
+        this.instructor_name = instructor_name;
         this.classroom = classroom;
     }
 
-    public Long getInstructorId() {
-        return InstructorId;
+    public Long getInstructor_id() {
+        return instructor_id;
     }
 
-    public void setInstructorId(Long instructorId) {
-        InstructorId = instructorId;
+    public void setInstructor_id(Long instructor_id) {
+        this.instructor_id = instructor_id;
     }
 
-    public String getName() {
-        return name;
+    public String getInstructor_name() {
+        return instructor_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setInstructor_name(String instructor_name) {
+        this.instructor_name = instructor_name;
     }
 
     public Classroom getClassroom() {
@@ -60,8 +57,8 @@ public class Instructor {
     @Override
     public String toString() {
         return "Instructor{" +
-                "InstructorId=" + InstructorId +
-                ", name='" + name + '\'' +
+                "instructor_id=" + instructor_id +
+                ", instructor_name='" + instructor_name + '\'' +
                 '}';
     }
 }

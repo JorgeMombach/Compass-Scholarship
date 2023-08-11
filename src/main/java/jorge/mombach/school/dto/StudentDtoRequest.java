@@ -4,7 +4,6 @@ public class StudentDtoRequest {
 
     private String student_name;
 
-
     public String getStudent_name() {
         return student_name;
     }
