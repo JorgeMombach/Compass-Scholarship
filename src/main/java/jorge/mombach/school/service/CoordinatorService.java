@@ -4,6 +4,7 @@ import jorge.mombach.school.dto.*;
 import jorge.mombach.school.entity.Classroom;
 import jorge.mombach.school.entity.Coordinator;
 import jorge.mombach.school.exception.ClassroomNotFoundException;
+import jorge.mombach.school.exception.CoordinatorAlreadyExistsException;
 import jorge.mombach.school.repository.ClassroomRepository;
 import jorge.mombach.school.repository.CoordinatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class CoordinatorService {
     public CoordinatorDtoResponse createCoordinatorInClassroom(Long classroomId, CoordinatorDtoRequest coordinatorDtoRequest) {
         Classroom classroom = classroomRepository.findById(classroomId)
                 .orElseThrow(() -> new ClassroomNotFoundException("Classroom not found: " + classroomId));
+
+        if (classroom.getCoordinator() != null) {
+            throw new CoordinatorAlreadyExistsException("A coordinator already exists in the classroom.");
+        }
 
         Coordinator coordinator = new Coordinator();
         coordinator.setCoordinator_name(coordinatorDtoRequest.getCoordinator_name());
