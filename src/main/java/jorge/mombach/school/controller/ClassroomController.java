@@ -42,5 +42,10 @@ public class ClassroomController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/classroom/{id}/full-info")
+    public ResponseEntity<ClassroomDtoFullResponse> getClassroomFullInfo(@PathVariable Long id) {
+        ClassroomDtoFullResponse classroomDtoFullResponse = classroomService.getClassroomFullInfo(id);
+        return ResponseEntity.ok(classroomDtoFullResponse);
+    }
 }
 

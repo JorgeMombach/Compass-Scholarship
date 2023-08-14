@@ -59,14 +59,7 @@ public class StudentService {
 
         studentRepository.save(student);
 
-        return convertStudentToDto(student);
-    }
-
-    private StudentDtoResponse convertStudentToDto(Student student) {
-        return new StudentDtoResponse(
-                student.getStudent_id(),
-                student.getStudent_name()
-        );
+        return convertStudentToDtoWithSquad(student);
     }
 
     public List<StudentDtoResponse> getStudentsWithSquadsByClassroom(Long classroomId) {

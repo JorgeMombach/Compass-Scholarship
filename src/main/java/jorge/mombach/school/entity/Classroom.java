@@ -23,13 +23,13 @@ public class Classroom {
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Squad> squads = new ArrayList<>();
 
-    @OneToOne(mappedBy = "classroom")
+    @OneToOne(mappedBy = "classroom", cascade = CascadeType.ALL)
     private Coordinator coordinator;
 
-    @OneToMany(mappedBy = "classroom")
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Instructor> instructors = new ArrayList<>();
 
-    @OneToOne(mappedBy = "classroom")
+    @OneToOne(mappedBy = "classroom", cascade = CascadeType.ALL)
     private ScrumMaster scrumMaster;
 
     protected Classroom() {
