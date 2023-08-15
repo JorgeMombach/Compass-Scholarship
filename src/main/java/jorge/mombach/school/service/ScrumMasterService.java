@@ -5,7 +5,6 @@ import jorge.mombach.school.dto.ScrumMasterDtoResponse;
 import jorge.mombach.school.entity.Classroom;
 import jorge.mombach.school.entity.ScrumMaster;
 import jorge.mombach.school.exception.ClassroomNotFoundException;
-import jorge.mombach.school.exception.CoordinatorAlreadyExistsException;
 import jorge.mombach.school.exception.ScrumMasterAlreadyExistsException;
 import jorge.mombach.school.repository.ClassroomRepository;
 import jorge.mombach.school.repository.ScrumMasterRepository;
