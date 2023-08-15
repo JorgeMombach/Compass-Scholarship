@@ -32,7 +32,7 @@ public class Classroom {
     @OneToOne(mappedBy = "classroom", cascade = CascadeType.ALL)
     private ScrumMaster scrumMaster;
 
-    protected Classroom() {
+    public Classroom() {
     }
 
     public Classroom(Long id, String classroom_name, String status) {
