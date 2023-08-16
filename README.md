@@ -138,6 +138,8 @@ Esta é a sequencia para tal:
     "student_name" : "Cléber"
   }
   ```
+- Lembrar de na url mudar o id de squad para 1 ao inserir o primeiro aluno: localhost:8080/api/v1/classroom/1/squad/1/students
+
 4. Criar um coordenador dentro de uma turma usando a requisição -> "Post Coordinator in classroom".
 
 - ```json
