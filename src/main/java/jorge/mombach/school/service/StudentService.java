@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 public class StudentService {
 
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
     @Autowired
-    ClassroomRepository classroomRepository;
+    private ClassroomRepository classroomRepository;
     @Autowired
-    SquadRepository squadRepository;
+    private SquadRepository squadRepository;
 
     public StudentDtoResponse createStudentInClassroomAndSquad(Long classroomId, Long squadId, StudentDtoRequest studentDtoRequest) {
         Classroom classroom = classroomRepository.findById(classroomId)
@@ -60,17 +60,6 @@ public class StudentService {
         studentRepository.save(student);
 
         return convertStudentToDtoWithSquad(student);
-    }
-
-    public List<StudentDtoResponse> getStudentsWithSquadsByClassroom(Long classroomId) {
-        Classroom classroom = classroomRepository.findById(classroomId)
-                .orElseThrow(() -> new ClassroomNotFoundException("Classroom not found: " + classroomId));
-
-        List<Student> students = classroom.getStudents();
-
-        return students.stream()
-                .map(this::convertStudentToDtoWithSquad)
-                .collect(Collectors.toList());
     }
 
     private StudentDtoResponse convertStudentToDtoWithSquad(Student student) {

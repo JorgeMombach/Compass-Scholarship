@@ -17,9 +17,9 @@ import java.net.URI;
 public class CoordinatorController {
 
     @Autowired
-    CoordinatorService coordinatorService;
+    private CoordinatorService coordinatorService;
     @Autowired
-    ClassroomService classroomService;
+    private ClassroomService classroomService;
 
     @PostMapping("/classroom/{classroomId}/coordinator")
     public ResponseEntity<CoordinatorDtoResponse> createCoordinatorInClassroom(

@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 public class SquadService {
 
     @Autowired
-    SquadRepository squadRepository;
+    private SquadRepository squadRepository;
     @Autowired
-    ClassroomRepository classroomRepository;
+    private ClassroomRepository classroomRepository;
 
     public SquadDtoResponse createSquadInClassroom(Long classroomId, SquadDtoRequest squadDtoRequest) {
         Classroom classroom = classroomRepository.findById(classroomId)

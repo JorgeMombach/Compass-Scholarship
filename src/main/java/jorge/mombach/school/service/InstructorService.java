@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class InstructorService {
 
     @Autowired
-    InstructorRepository instructorRepository;
+    private InstructorRepository instructorRepository;
     @Autowired
-    ClassroomRepository classroomRepository;
+    private ClassroomRepository classroomRepository;
 
     public InstructorDtoResponse createInstructorInClassroom(Long classroomId, InstructorDtoRequest instructorDtoRequest) {
         Classroom classroom = classroomRepository.findById(classroomId)

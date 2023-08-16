@@ -16,7 +16,7 @@ import java.net.URI;
 public class SquadController {
 
     @Autowired
-    SquadService squadService;
+    private SquadService squadService;
 
     @PostMapping("/classroom/{classroomId}/squads")
     public ResponseEntity<SquadDtoResponse> createSquadInClassroom(

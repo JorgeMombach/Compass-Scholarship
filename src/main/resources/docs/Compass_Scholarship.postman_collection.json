@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "bcde9edc-3908-461d-a8cf-a5119b28bd80",
+		"name": "Compass_Scholarship",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24706273"
+	},
+	"item": [
+		{
+			"name": "Post classroom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"classroom_name\" : \"Turma B\",\r\n    \"status\" : \"waiting\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Squad in classroom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"squad_name\" : \"Kanbanbans\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom/1/squads"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all classrooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/v1/classroom"
+			},
+			"response": []
+		},
+		{
+			"name": "Update classroom",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"classroom_name\" : \"Turma A\",\r\n    \"status\" : \"finished\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete classroom",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "localhost:8080/api/v1/classroom/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Post student in classroom and squad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"student_name\" : \"Cléber\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom/1/squad/3/students"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Coordinator in classroom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"coordinator_name\" : \"Maykon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom/2/coordinator"
+			},
+			"response": []
+		},
+		{
+			"name": "Post ScrumMaster in classroom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"scrumMaster_name\" : \"Josue\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom/2/scrumMaster"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Instructor in classroom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"instructor_name\" : \"Clóvis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/v1/classroom/2/instructor"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Classroom full info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/v1/classroom/1/full-info"
+			},
+			"response": []
+		}
+	]
+}

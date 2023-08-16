@@ -19,11 +19,11 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
     @Autowired
-    ClassroomService classroomService;
+    private ClassroomService classroomService;
     @Autowired
-    SquadService squadService;
+    private SquadService squadService;
 
     @PostMapping("/classroom/{classroomId}/squad/{squadId}/students")
     public ResponseEntity<StudentDtoResponse> createStudentInClassroomAndSquad(
@@ -39,11 +39,5 @@ public class StudentController {
                 .toUri();
 
         return ResponseEntity.created(location).body(savedStudent);
-    }
-
-
-    @GetMapping("/classroom/{classroomId}/students-with-squads")
-    public List<StudentDtoResponse> getStudentsWithSquadsByClassroom(@PathVariable Long classroomId) {
-        return studentService.getStudentsWithSquadsByClassroom(classroomId);
     }
 }

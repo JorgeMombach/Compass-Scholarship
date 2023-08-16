@@ -17,9 +17,9 @@ import java.net.URI;
 public class ScrumMasterController {
 
     @Autowired
-    ScrumMasterService scrumMasterService;
+    private ScrumMasterService scrumMasterService;
     @Autowired
-    ClassroomService classroomService;
+    private ClassroomService classroomService;
 
     @PostMapping("/classroom/{classroomId}/scrumMaster")
     public ResponseEntity<ScrumMasterDtoResponse> createScrumMasterInClassroom(

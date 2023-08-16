@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class ScrumMasterService {
 
     @Autowired
-    ScrumMasterRepository scrumMasterRepository;
+    private ScrumMasterRepository scrumMasterRepository;
     @Autowired
-    ClassroomRepository classroomRepository;
+    private ClassroomRepository classroomRepository;
 
     public ScrumMasterDtoResponse createScrumMasterInClassroom(Long classroomId, ScrumMasterDtoRequest scrumMasterDtoRequest) {
         Classroom classroom = classroomRepository.findById(classroomId)

@@ -20,9 +20,9 @@ import java.net.URI;
 public class InstructorController {
 
     @Autowired
-    InstructorService instructorService;
+    private InstructorService instructorService;
     @Autowired
-    ClassroomService classroomService;
+    private ClassroomService classroomService;
 
     @PostMapping("/classroom/{classroomId}/instructor")
     public ResponseEntity<InstructorDtoResponse> createInstructorInClassroom(

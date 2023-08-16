@@ -13,7 +13,7 @@ import java.util.List;
 public class ClassroomController {
 
     @Autowired
-    ClassroomService classroomService;
+    private ClassroomService classroomService;
 
     @PostMapping("/classroom")
     public ClassroomDtoRequest saveClassroom(@RequestBody ClassroomDtoRequest classroomDtoRequest){

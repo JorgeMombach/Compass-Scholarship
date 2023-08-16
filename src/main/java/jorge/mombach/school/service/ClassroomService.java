@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
 public class ClassroomService {
 
     @Autowired
-    ClassroomRepository classroomRepository;
+    private ClassroomRepository classroomRepository;
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
     @Autowired
-    SquadRepository squadRepository;
+    private SquadRepository squadRepository;
     @Autowired
-    CoordinatorRepository coordinatorRepository;
+    private CoordinatorRepository coordinatorRepository;
     @Autowired
-    InstructorRepository instructorRepository;
+    private InstructorRepository instructorRepository;
     @Autowired
-    ScrumMasterRepository scrumMasterRepository;
+    private ScrumMasterRepository scrumMasterRepository;
 
     public ClassroomDtoRequest save(ClassroomDtoRequest classroomDtoRequest) {
         if (!classroomDtoRequest.getStatus().equalsIgnoreCase("waiting")) {

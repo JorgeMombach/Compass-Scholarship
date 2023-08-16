@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 public class CoordinatorService {
 
     @Autowired
-    CoordinatorRepository coordinatorRepository;
+    private CoordinatorRepository coordinatorRepository;
     @Autowired
-    ClassroomRepository classroomRepository;
+    private ClassroomRepository classroomRepository;
 
     public CoordinatorDtoResponse createCoordinatorInClassroom(Long classroomId, CoordinatorDtoRequest coordinatorDtoRequest) {
         Classroom classroom = classroomRepository.findById(classroomId)
