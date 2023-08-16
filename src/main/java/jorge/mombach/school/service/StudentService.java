@@ -5,10 +5,7 @@ import jorge.mombach.school.dto.StudentDtoResponse;
 import jorge.mombach.school.entity.Classroom;
 import jorge.mombach.school.entity.Squad;
 import jorge.mombach.school.entity.Student;
-import jorge.mombach.school.exception.ClassroomNotFoundException;
-import jorge.mombach.school.exception.InvalidClassroomStatusException;
-import jorge.mombach.school.exception.MaximumStudentsExceededException;
-import jorge.mombach.school.exception.SquadNotFoundException;
+import jorge.mombach.school.exception.*;
 import jorge.mombach.school.repository.ClassroomRepository;
 import jorge.mombach.school.repository.SquadRepository;
 import jorge.mombach.school.repository.StudentRepository;
@@ -39,6 +36,7 @@ public class StudentService {
 
         String classroomStatus = classroom.getStatus();
 
+
         if (!classroomStatus.equals("waiting")) {
             throw new InvalidClassroomStatusException("Cannot add a new student when the classroom status is: " + classroomStatus);
         }
@@ -51,15 +49,21 @@ public class StudentService {
             throw new MaximumStudentsExceededException("Maximum number of students in the squad exceeded (max: 5). Consider creating a new Squad.");
         }
 
-        Student student = new Student();
-        student.setStudent_name(studentDtoRequest.getStudent_name());
+        if (isNotBlank(studentDtoRequest.getStudent_name())){
+            Student student = new Student();
+            student.setStudent_name(studentDtoRequest.getStudent_name());
 
-        student.setClassroom(classroom);
-        student.setSquad(squad);
+            student.setClassroom(classroom);
+            student.setSquad(squad);
 
-        studentRepository.save(student);
+            studentRepository.save(student);
 
-        return convertStudentToDtoWithSquad(student);
+            return convertStudentToDtoWithSquad(student);
+        } else{
+            throw new MissingStudentNameException("Student must have a name in order to complete registration");
+        }
+
+
     }
 
     private StudentDtoResponse convertStudentToDtoWithSquad(Student student) {
@@ -68,5 +72,9 @@ public class StudentService {
                 student.getStudent_name(),
                 student.getSquad().getSquad_name()
         );
+    }
+
+    private boolean isNotBlank(String value){
+        return value != null && !value.trim().isEmpty();
     }
 }
